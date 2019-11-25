@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Result from "./components/pages/Result";
+import "./app.css";
+import { Grommet } from "grommet";
 
-function App() {
+const theme = {
+  global: {
+    control: {
+      border: {
+        radius: "24px",
+      },
+    },
+    colors: {
+      brand: "#4682fa",
+      active: "#4682fa",
+      selected: "#4682fa",
+      focus: "inherit",
+    },
+    font: {
+      family: "Roboto",
+      size: "18px",
+      height: "20px",
+    },
+  },
+  button: {
+    padding: {
+      vertical: "20px",
+    },
+    border: {
+      radius: "40px",
+    },
+    color: "white",
+  },
+};
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={theme}>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/Result" exact component={Result} />
+        </Switch>
+      </Router>
+    </Grommet>
   );
-}
+};
 
 export default App;
