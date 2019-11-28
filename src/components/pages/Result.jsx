@@ -1,36 +1,34 @@
 import React from "react";
 import Layout from "../layout/Layout";
 import { Text, Heading, Box, Button } from "grommet";
-import { OnesPayment0 } from "../../containers/Payment";
-import Switch from "../../containers/Switch";
+import OnesPayment from "../../containers/OnesPayment";
+import MyPayment from "../../containers/MyPayment";
 
 const Result = () => {
   const localData = JSON.parse(localStorage.getItem("SubmittedData"));
   return (
     <Layout>
-      <Text>お勘定は...</Text>
+      <Text>他の人支払いは一人...</Text>
       <Heading responsive={false} size="medium" level="3" textAlign="center">
-        一人２０００円
+        <OnesPayment
+          bill={localData.bill}
+          numOfPeople={localData.numOfPeople}
+          calcOption={localData.calcOption}
+        />
+        円
       </Heading>
-      <Text>あなたの収支は...</Text>
+      <Text>あなたの支払いは...</Text>
       <Heading responsive={false} size="medium" level="3" textAlign="center">
-        ー　２０００円
+        <MyPayment
+          bill={localData.bill}
+          numOfPeople={localData.numOfPeople}
+          calcOption={localData.calcOption}
+        />
+        円
       </Heading>
       <Box margin={{ top: "medium", bottom: "small" }}>
         <Button primary label={<Box align="center">←戻る</Box>} href="/" />
       </Box>
-
-      <ul>
-        <li>{localData.bill}</li>
-        <li>{localData.numOfPeople}</li>
-        <li>{localData.calcOption}</li>
-      </ul>
-
-      <Switch
-        bill={localData.bill}
-        numOfPeople={localData.numOfPeople}
-        calcOption={localData.calcOption}
-      />
     </Layout>
   );
 };

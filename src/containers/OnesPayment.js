@@ -1,13 +1,17 @@
-export const OnesPayment0 = ({ bill, numOfPeople }) => {
-  return Math.floor(bill / numOfPeople);
+import React from "react";
+
+const OnesPayment = ({ bill, numOfPeople, calcOption }) => {
+  const pureBill = Math.floor(bill / 1000) * 1000;
+  switch (calcOption) {
+    case "ダサ勘":
+      return <div>{Math.floor(bill / numOfPeople)}</div>;
+    case "セコ勘":
+      return <div>{Math.ceil(pureBill / numOfPeople / 1000) * 1000}</div>;
+    case "イケ勘":
+      return <div>{Math.floor(pureBill / numOfPeople / 1000) * 1000}</div>;
+    default:
+      return <div>nothing above!</div>;
+  }
 };
 
-export const onesPayment1 = (bill, numOfPeople) => {
-  const pureBill = Math.floor(bill / 1000) * 1000;
-  return Math.floor(pureBill / numOfPeople / 1000) * 1000;
-};
-
-export const onesPayment2 = (bill, numOfPeople) => {
-  const pureBill = Math.floor(bill / 1000) * 1000;
-  return Math.ceil(pureBill / numOfPeople / 1000) * 1000;
-};
+export default OnesPayment;

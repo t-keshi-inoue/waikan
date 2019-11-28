@@ -3,14 +3,11 @@ import Layout from "../layout/Layout";
 import { Button, FormField, TextInput, Select, Box, Text } from "grommet";
 import { Formik } from "formik";
 import * as Yup from "yup";
-
 import Error from "../layout/Error";
-import { OnesPayment0 } from "../../containers/Payment";
-import Switch from "../../containers/Switch";
 
 const ValidationSchema = Yup.object().shape({
   bill: Yup.number()
-    .min(2, "金額が少なすぎます!")
+    .min(1000, "金額が少なすぎます!")
     .required("金額を入力してください"),
   numOfPeople: Yup.number()
     .min(2, "人数が少なすぎます!")
@@ -93,8 +90,9 @@ const Home = props => {
                 <Select
                   type="string"
                   name="calcOption"
+                  placeholder="端数はあなたの匙加減..."
                   onChange={event => setFieldValue("calcOption", event.value)}
-                  options={["セコ勘", "ダサ勘", "イケ勘"]}
+                  options={["ダサ勘", "セコ勘", "イケ勘"]}
                   value={values.calcOption}
                   className={
                     touched.calcOption && errors.calcOption ? "has-error" : null
@@ -109,27 +107,10 @@ const Home = props => {
                 primary
                 label={<Box align="center">計算する</Box>}
                 type="submit"
-                href="/result"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
               />
             </Box>
-            <section label="text">
-              <h1>
-                <OnesPayment0
-                  bill={values.bill}
-                  numOfPeople={values.numOfPeople}
-                />
-                <hr />
-                <Switch
-                  bill={values.bill}
-                  numOfPeople={values.numOfPeople}
-                  calcOption={values.calcOption}
-                />
-              </h1>
-              <hr />
-              <h5>{values.calcOption}</h5>
-            </section>
           </form>
         )}
       </Formik>
