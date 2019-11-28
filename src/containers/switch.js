@@ -1,5 +1,6 @@
+import React from "react";
 import {
-  onesPayment0,
+  OnesPayment0,
   myPayment0,
   onesPayment1,
   myPayment1,
@@ -7,31 +8,23 @@ import {
   myPayment2,
 } from "./Payment.js";
 
-const answer = { bill: 8999, numOfPeople: 3, paymentMethod: 1 };
-
-const result = (bill, numOfPeople, paymentMethod) => {
-  switch (answer.paymentMethod) {
-    case 0:
+const Switch = ({ bill, numOfPeople, calcOption }) => {
+  switch (calcOption) {
+    case "ダサ勘":
+      return Math.floor(bill / numOfPeople);
+    case "セコ勘":
       return (
-        onesPayment0(answer.bill, answer.numOfPeople) &&
-        myPayment0(answer.bill, answer.numOfPeople)
+        <ol>
+          <li>{onesPayment1(bill, numOfPeople)}</li>
+          <li>{myPayment1(bill, numOfPeople)}</li>
+        </ol>
       );
-
-    case 1:
-      return (
-        onesPayment1(answer.bill, answer.numOfPeople) &&
-        myPayment1(answer.bill, answer.numOfPeople)
-      );
-
-    case 2:
-      return (
-        onesPayment2(answer.bill, answer.numOfPeople) &&
-        myPayment2(answer.bill, answer.numOfPeople)
-      );
+    case "イケ勘":
+      return onesPayment2(bill, numOfPeople) && myPayment2(bill, numOfPeople);
 
     default:
-      console.log("none is above");
+      return <div>nothing above!</div>;
   }
 };
 
-console.log(result(8999, 3, 3));
+export default Switch;

@@ -41,7 +41,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/Result" exact component={Result} />
+          <Route path="/result" component={Result} />
         </Switch>
       </Router>
     </Grommet>
