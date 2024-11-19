@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^7.5.0",
+    "firebase": "^10.9.0",
     "formik": "^2.0.5",
     "grommet": "^2.8.0",
     "grommet-icons": "^4.4.0",
